@@ -13,7 +13,6 @@ module HomeService
 
     def call
       #check umail exists
-      print("Aqui estao os parametros #{@params}")
       participant = Participant.where(email: @params[:email])
       .first_or_create(
         email: @params[:email],

@@ -13,14 +13,12 @@ module HomeService
     def call
       vote = REDIS_CLIENT.get(@session)
       if vote
-        print("Tem coisa no Redis: #{vote}")
         vote = JSON.parse(vote)
         vote.push({
           "vote" => @vote_new
         })
         REDIS_CLIENT.set(@session, vote.to_json)
       else
-        print("Não tem nada no Redis")
         vote = []
         vote.push({
           "vote" => @vote_new
@@ -30,9 +28,6 @@ module HomeService
 
     end
 
-    #def destroy
-      #REDIS_CLIENT.del(session.id)
-    #end
 
   end
 end
