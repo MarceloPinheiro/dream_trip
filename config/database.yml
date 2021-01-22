@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: dream_trip_production
-  username: dream_trip
-  password: <%= ENV['DREAM_TRIP_DATABASE_PASSWORD'] %>
+  username: <%= ENV['HER_USER']%>
+  password: <%= ENV['HER_PASS'] %>
