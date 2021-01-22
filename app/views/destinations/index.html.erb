@@ -1,0 +1,35 @@
+<h1>Destinos</h1>
+<br>
+<div class="row">
+  <div class="col-lg-12" style="text-align:right">
+    <%=link_to "Novo Destino",new_destination_url(), :class => "btn btn-primary"%>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Local</th>
+          <th>Imagem</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@destinations.each do |destination|%>
+          <tr>
+            <td><%=destination.id%></td>
+            <td><%=destination.place%></td>
+            <td><img src="<%=url_for(destination.image) if destination.image.attached?%>" class="img-fluid"></td>
+            <td>
+              <p><%=link_to "editar", edit_destination_url(destination), :class => 'btn btn-sm btn-outline-info'%></p>
+              <p><%=link_to "mostrar", destination_url(destination), :class => 'btn btn-sm btn-outline-secondary' %></p>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

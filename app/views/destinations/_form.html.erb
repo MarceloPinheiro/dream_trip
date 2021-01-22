@@ -1,0 +1,44 @@
+<%= form_with(model: destination, local: true, multipart: true) do |form| %>
+  <% if destination.errors.any? %>
+    <div id="error_explanation">
+      <h2>Erros ao salvar o destino:</h2>
+
+      <ul>
+      <% destination.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=form.label :place%>
+        <%=form.text_field :place, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=form.label :description%>
+        <%=form.text_area :description, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=form.label :image%>
+        <%=form.file_field :image, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <%=form.submit "Salvar Dados", :class => "btn btn-primary"%>
+    </div>
+  </div>
+<%end%>

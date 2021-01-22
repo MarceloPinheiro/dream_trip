@@ -1,0 +1,23 @@
+
+<div id="carouselTrip" class="carousel slide" data-ride="carousel" style="height:100vh">
+  <div class="carousel-inner" style="height:100vh">
+    <%@destinations.each do |destination|%>
+      <%= render 'destination', destination: destination %>
+      <%
+        @first = false
+        @i += 1
+      %>
+    <%end%>
+    <%= render 'finalization' %>
+  </div>
+  
+</div>
+
+<div class="container centered-question" id="totalv">
+  <div class="question" style="text-aling:center; height: 20vh;">
+    <div class="devise-body">
+      <h1>Qual destino prefere?</h1>
+      <br><span style="font-size:18px;">Total: <span id="votos">1</span> de <%=@destinations.size.to_s%></span>
+    </div>
+  </div>
+</div>

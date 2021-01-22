@@ -1,0 +1,4 @@
+<h1><%=@destination.place%></h1>
+<p><strong><%=@destination.description%></strong></p>
+<p><img src="<%=url_for(@destination.image) if @destination.image.attached?%>" class="img-fluid"></p>
+<p><a href="/destinations" class="btn btn-outline-primary">voltar</a></p>
