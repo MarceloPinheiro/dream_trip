@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-    @destinations = Destination.all().select(:id,:description,:place, :image).to_a.combination(2)
+    @destinations = Destination.all.select(:id, :description, :place, :image).to_a.combination(2)
     @first = true
-    @i=1
+    @i = 1
   end
 
   def finish
@@ -18,13 +18,13 @@ class HomeController < ApplicationController
   def vote_add
     vote = HomeService::VoteService.new(params[:vote], session.id).call
     respond_to do |format|
-      format.json {render(json: vote.to_json, status: :ok)}
+      format.json { render(json: vote.to_json, status: :ok) }
     end
   end
 
   private
-    def finish_params
-      params.require(:vote).permit(:name, :email)
-    end
 
+  def finish_params
+    params.require(:vote).permit(:name, :email)
+  end
 end

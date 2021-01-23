@@ -1,5 +1,4 @@
 RSpec.describe "Destinations" do
-
   describe "GET /index" do
     it "returns http success" do
       get "/destinations"
@@ -16,6 +15,7 @@ RSpec.describe "Destinations" do
 
   describe "GET /edit" do
     let!(:destination) { create(:destination) }
+
     it "returns http success" do
       get "/destinations/#{destination.id}/edit"
       expect(response).to have_http_status(:success)
@@ -24,10 +24,10 @@ RSpec.describe "Destinations" do
 
   describe "GET /show" do
     let!(:destination) { create(:destination) }
+
     it "returns http success" do
       get "/destinations/#{destination.id}"
       expect(response).to have_http_status(:success)
     end
   end
-
 end

@@ -1,5 +1,4 @@
 class DestinationsController < ApplicationController
-
   before_action :destination_load, only: %i[edit update show]
   before_action :authenticate_user!
 
@@ -26,26 +25,26 @@ class DestinationsController < ApplicationController
     save_destination!
   end
 
-  def show
-  end
+  def show; end
 
   def participants
-    @participants = Participant.all().order(name: :asc)
+    @participants = Participant.all.order(name: :asc)
   end
 
   private
-    def destination_load
-      @destination = Destination.find(params[:id])
-    end
 
-    def destination_params
-      params.require(:destination).permit(:id, :place, :image, :description)
-    end
+  def destination_load
+    @destination = Destination.find(params[:id])
+  end
 
-    def save_destination!
-      @destination.save!
-      render :show
-    rescue StandardError
-      render (params[:action] == "create" ? :new : :edit)
-    end
+  def destination_params
+    params.require(:destination).permit(:id, :place, :image, :description)
+  end
+
+  def save_destination!
+    @destination.save!
+    render :show
+  rescue StandardError
+    render(params[:action] == "create" ? :new : :edit)
+  end
 end

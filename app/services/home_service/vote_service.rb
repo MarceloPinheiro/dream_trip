@@ -4,7 +4,7 @@ module HomeService
 
     attr_reader :vote, :errors
 
-    def initialize(params,session)
+    def initialize(params, session)
       @vote_new = params
       @session = session
       @errors = {}
@@ -12,22 +12,13 @@ module HomeService
 
     def call
       vote = REDIS_CLIENT.get(@session)
-      if vote
-        vote = JSON.parse(vote)
-        vote.push({
-          "vote" => @vote_new
-        })
-        REDIS_CLIENT.set(@session, vote.to_json)
-      else
-        vote = []
-        vote.push({
-          "vote" => @vote_new
-        })
-        REDIS_CLIENT.set(@session, vote.to_json)
-      end
-
+      vote = if vote
+               JSON.parse(vote)
+             else
+               []
+             end
+      vote.push({ "vote" => @vote_new })
+      REDIS_CLIENT.set(@session, vote.to_json)
     end
-
-
   end
 end
