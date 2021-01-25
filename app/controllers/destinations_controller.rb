@@ -6,6 +6,10 @@ class DestinationsController < ApplicationController
 
   def index
     @destinations = Destination.all
+    respond_to do |format|
+      format.html
+      format.json { render(json: @destinations.to_json(only: %i(id place description)), status: :ok) }
+    end
   end
 
   def new
